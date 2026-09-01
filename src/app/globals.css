@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  /* Straight off their own collateral: metallic gold wordmark and star on
+     black, with the red they use for price flashes. */
+  --color-pitch: #0a0906;
+  --color-pitch-2: #14120c;
+  --color-pitch-3: #1e1b12;
+  --color-gold: #d4a537;
+  --color-gold-lit: #f2d488;
+  --color-gold-deep: #8a6414;
+  --color-flash: #d81f26;
+  --color-cream: #f4efe3;
+  --color-cream-dim: #a8a08d;
+
+  --font-display: var(--font-archivo), "Helvetica Neue", sans-serif;
+  --font-body: var(--font-dm), system-ui, sans-serif;
+  --font-script: var(--font-parisienne), cursive;
+  --font-arabic: var(--font-cairo), "Segoe UI", sans-serif;
+
+  --text-hero: clamp(2.6rem, 7.4vw, 6.75rem);
+  --text-display: clamp(1.9rem, 4.4vw, 3.9rem);
+  --text-section: clamp(1.45rem, 2.7vw, 2.4rem);
+  --text-lead: clamp(1rem, 1.25vw, 1.2rem);
+}
+
+@layer base {
+  html {
+    background: var(--color-pitch);
+    color: var(--color-cream);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-pitch);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+}
+
+@utility font-script {
+  font-family: var(--font-script);
+}
+
+/* The gold in their wordmark is a gradient, not a flat fill. */
+@utility text-gold-plate {
+  background: linear-gradient(
+    100deg,
+    #8a6414 0%,
+    #d4a537 22%,
+    #f7e3ae 42%,
+    #d4a537 62%,
+    #8a6414 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility rule-flash {
+  background: repeating-linear-gradient(
+    -55deg,
+    var(--color-flash) 0 14px,
+    transparent 14px 26px
+  );
+}
+
+/* Arabic corrections — unlayered so they outrank Tailwind's utilities, and
+   keyed to dir because browser translation rewrites lang. */
+html[dir="rtl"] .font-display {
+  font-family: var(--font-arabic);
+  font-stretch: normal;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .text-hero {
+  font-size: clamp(1.95rem, 5.6vw, 4.9rem);
+  line-height: 1.32;
+}
+
+html[dir="rtl"] .text-display {
+  font-size: clamp(1.55rem, 3.6vw, 3.1rem);
+  line-height: 1.36;
+}
+
+html[dir="rtl"] .text-section {
+  font-size: clamp(1.25rem, 2.3vw, 2rem);
+  line-height: 1.4;
+}
+
+html[dir="rtl"] [class*="tracking-["] {
+  letter-spacing: 0.02em;
+}
