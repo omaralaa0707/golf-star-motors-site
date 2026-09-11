@@ -1,33 +1,74 @@
-# Golf Star Motors — concept site
+# Golf Star Motors — site 02 of 46
 
-A concept site for **Golf Star Motors**, a multi-make dealership in Ard El Golf,
-Nasr City, trading since 1975. Bilingual (Arabic / English) with full RTL
-support.
+A concept site built entirely from this dealership's own published material.
+**Not affiliated with Golf Star Motors, and not an official site.**
 
-Imagery, prices and copy tone come from the showroom's own Instagram
-([@golf.star.motors](https://www.instagram.com/golf.star.motors/)) and Facebook.
-Unofficial concept, not affiliated with the dealership.
+- **Live:** https://golf-star-motors-site.vercel.app
+- **Repo:** [golf-star-motors-site](https://github.com/omaralaa0707/golf-star-motors-site)
 
-## Design notes
+## What this page is about
 
-- **Signature technique** — a GLSL displacement dissolve between photographs,
-  driven by scroll through a pinned section. Two textures are sampled with their
-  UVs pushed apart along a noise field, so frames melt rather than cross-fade.
-- **Palette** taken from their own collateral: metallic gold wordmark on black,
-  with the red they use for price flashes.
-- **Type** — Archivo at extrabold for retail weight, Parisienne for the "Since
-  1975" signature they sign every post with, Cairo for Arabic.
-- **Motion** is deliberately quick and mechanical — counters ticking up, a
-  continuous make ticker — the opposite of a slow luxury fade.
-- Deposits and instalments shown are transcribed from their published posts and
-  labelled as-published.
+Every site in this series is built around something true and checkable about
+the dealer's own account — a pattern in what they publish, a contradiction
+between two of their channels, or a fact about their showroom — rather than
+around a generic template. The palette, type, 3D piece and motion below were
+all chosen to serve that finding.
 
-## Local development
+## Design record
+
+**Palette**
+: Metallic gold / pitch black / flash red
+
+**Type pairing**
+: Archivo + Parisienne script / Cairo (AR)
+
+**3D / signature technique**
+: GLSL displacement dissolve between photos, scroll-driven
+
+**Motion language**
+: Quick and mechanical: ticking counters, continuous make ticker
+
+## Sources
+
+Everything on the page was sourced from:
+
+- Instagram: https://www.instagram.com/golf.star.motors/
+- Facebook: https://www.facebook.com/golfstarmotors/
+- Google Maps: https://www.google.com/maps/place/%D8%AC%D9%88%D9%84%D9%81+%D8%B3%D8%AA%D8%A7%D8%B1%E2%80%AD/data=!4m2!3m1!1s0x0:0x678fcac3b2cab5e2
+
+Photography belongs to the dealership (or, where their frames are watermarked
+by an outside studio, to that studio) and is used here only to document their
+own published material. No figure on the page is invented: anything the dealer
+did not publish is marked as unpublished rather than estimated.
+
+## Running it
 
 ```bash
 pnpm install
-pnpm dev
+pnpm dev      # http://localhost:3000
+pnpm build    # production build — must pass before shipping
+pnpm lint     # eslint, zero warnings
 ```
 
-Next.js 16, React 19, Tailwind v4, GSAP, Lenis, react-three-fiber.
-Designed and built by Claude.
+Requires `node-linker=hoisted` in `.npmrc` (already present) or three.js peer
+deps fail to resolve.
+
+## Structure
+
+```
+src/content/media.ts      verified facts and figures — the data layer
+src/content/en.ts|ar.ts   all copy, both locales, identical shapes
+src/content/schema-ext.ts the page-specific content contract
+src/components/webgl/     the 3D piece
+src/components/site/      the page composition
+src/app/globals.css       palette tokens, type, RTL overrides, motion
+```
+
+Arabic/English toggle with full RTL. All CSS direction overrides key off
+`[dir="rtl"]` (never `[lang]`) and live outside `@layer`. Every Latin or
+numeric fragment inside Arabic copy is wrapped in `.latin` for correct bidi.
+
+---
+
+Part of a 46-site series. See the [top-level README](../README.md) for the full
+index and [`TRACKING.md`](../TRACKING.md) for the differentiation log.
