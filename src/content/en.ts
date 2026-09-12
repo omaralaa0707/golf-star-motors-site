@@ -9,7 +9,7 @@ export const en: SiteContent = {
     tagline: "Authorised distributor — since 1975",
   },
   nav: [
-    { label: "Offers", href: "#offers" },
+    { label: "Lineup", href: "#offers" },
     { label: "Brands", href: "#brands" },
     { label: "Finance", href: "#finance" },
     { label: "Visit", href: "#visit" },
@@ -17,8 +17,8 @@ export const en: SiteContent = {
   hero: {
     eyebrow: "Ard El Golf, Nasr City",
     headline: "Fifty years on the road with Cairo",
-    sub: "Buy, sell and finance every make. Deposits from 120,000 EGP and instalments up to eight years — on your ID card alone.",
-    primaryCta: "See the offers",
+    sub: "Buy, sell and finance every make — flexible deposits and instalments up to eight years, on your ID card alone.",
+    primaryCta: "See the lineup",
     secondaryCta: "Book a free consultation",
   },
   about: {
@@ -56,8 +56,8 @@ export const en: SiteContent = {
     ],
   },
   gallery: {
-    heading: "Current offers",
-    intro: "Real prices and deposits, straight from the showroom's own posts.",
+    heading: "Our lineup",
+    intro: "Every make we carry, all in one place — come take a look or drop us a message.",
     items: [],
   },
   contact: {
@@ -77,8 +77,7 @@ export const en: SiteContent = {
     cta: "Get directions",
   },
   footer: {
-    disclaimer: "Concept design — not an official Golf Star Motors website.",
-    rights: "All imagery and offers belong to Golf Star Motors.",
+    rights: "© Golf Star Motors. All rights reserved.",
   },
   a11y: {
     toggleLanguage: "Switch to Arabic",

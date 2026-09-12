@@ -1,36 +1,32 @@
 /**
- * Offers transcribed from Golf Star's own published posts. Deposit (مقدم) and
- * monthly instalment (القسط الشهري) are exactly as they advertised them; the UI
- * says plainly that these are as-published and subject to change.
+ * Golf Star Motors (جولف ستار للسيارات) — evergreen media only.
+ *
+ * Every photograph kept here is undated: no price, deposit, monthly
+ * instalment or date is printed on any of them. Specific advertised pricing
+ * has been removed from the site entirely — ask the showroom directly for
+ * current rates.
  */
-export type Offer = {
+
+export type CarPhoto = {
   src: string;
   make: string;
   model: string;
-  /** Deposit in EGP, as advertised. */
-  deposit?: number;
-  /** Monthly instalment in EGP, as advertised. */
-  monthly?: number;
-  /** Advertised interest rate, where they published one. */
-  rate?: string;
 };
 
-export const OFFERS: Offer[] = [
-  { src: "/media/car-08.webp", make: "BYD", model: "F3", deposit: 120000 },
-  { src: "/media/car-09.webp", make: "Nissan", model: "Sunny", deposit: 140000 },
-  { src: "/media/car-02.webp", make: "Fiat", model: "Tipo", deposit: 210000 },
-  { src: "/media/car-14.webp", make: "MG", model: "5", deposit: 265000 },
-  { src: "/media/car-13.webp", make: "MG", model: "ZS", deposit: 290000 },
-  { src: "/media/car-05.webp", make: "Citroën", model: "C4", deposit: 295000 },
-  { src: "/media/car-24.jpg", make: "MG", model: "ZS", deposit: 315000, monthly: 19000 },
-  { src: "/media/car-12.webp", make: "MG", model: "HS", deposit: 395000 },
-  { src: "/media/car-04.webp", make: "Kia", model: "XCeed Topline", deposit: 400000 },
-  { src: "/media/car-23.jpg", make: "MG", model: "7", deposit: 495000, monthly: 31000 },
-  { src: "/media/car-03.webp", make: "Peugeot", model: "408", deposit: 560000 },
-  { src: "/media/car-18.jpg", make: "Peugeot", model: "3008", deposit: 660000, monthly: 42000 },
+/** Representative cars across the makes carried on the floor. */
+export const LINEUP: CarPhoto[] = [
+  { src: "/media/car-mg-zs.jpg", make: "MG", model: "ZS" },
+  { src: "/media/car-peugeot-408.jpg", make: "Peugeot", model: "408" },
+  { src: "/media/car-nissan-sunny.jpg", make: "Nissan", model: "Sunny" },
+  { src: "/media/car-mg-hs.jpg", make: "MG", model: "HS" },
+  { src: "/media/car-fiat-tipo.jpg", make: "Fiat", model: "Tipo" },
+  { src: "/media/car-citroen-c4.jpg", make: "Citroën", model: "C4" },
+  { src: "/media/car-kia-xceed.jpg", make: "Kia", model: "XCeed" },
+  { src: "/media/car-mg-5.jpg", make: "MG", model: "5" },
+  { src: "/media/car-byd-f3.jpg", make: "BYD", model: "F3" },
 ];
 
-/** Makes named across their own posts. */
+/** Makes carried across the floor. */
 export const MAKES = [
   "MG",
   "Peugeot",
@@ -44,12 +40,11 @@ export const MAKES = [
 
 /** Wide, atmospheric frames used for the full-bleed WebGL transition. */
 export const SCENES = [
-  { src: "/media/car-15.webp", key: "road" },
-  { src: "/media/car-22.jpg", key: "lot" },
-  { src: "/media/car-33.jpg", key: "desert" },
-  { src: "/media/car-19.jpg", key: "collection" },
+  { src: "/media/hero-road.jpg", key: "road" },
+  { src: "/media/scene-lot.jpg", key: "lot" },
+  { src: "/media/scene-desert.jpg", key: "desert" },
 ];
 
-export const KEYS_FRAME = "/media/car-27.jpg";
-export const TEASER_FRAME = "/media/car-07.webp";
-export const LOT_FRAME = "/media/car-22.jpg";
+export const KEYS_FRAME = "/media/keys.jpg";
+export const TEASER_FRAME = "/media/car-mg-zs.jpg";
+export const LOT_FRAME = "/media/scene-lot.jpg";

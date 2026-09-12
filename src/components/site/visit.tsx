@@ -22,82 +22,80 @@ export function Visit() {
             <h2 className="font-display max-w-[20ch] text-display leading-[1.04] font-extrabold uppercase">
               {c.heading}
             </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
             <p className="mt-4 max-w-[52ch] text-lead leading-relaxed text-cream-dim">{c.intro}</p>
-          </Reveal>
 
-          <div className="mt-12 grid gap-8 border-t border-gold/25 pt-10 md:grid-cols-3">
-            <Reveal>
-              <p className="font-display mb-3 text-[0.68rem] font-bold tracking-[0.16em] text-gold uppercase">
-                {c.addressLabel}
-              </p>
-              <p className="max-w-[30ch] leading-[1.75] text-cream">{c.address}</p>
-              <a
-                href={c.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-block font-display text-[0.72rem] font-bold tracking-[0.1em] text-gold uppercase underline-offset-4 hover:underline"
-              >
-                {c.cta}
-              </a>
-            </Reveal>
-
-            <Reveal delay={0.06}>
-              <p className="font-display mb-3 text-[0.68rem] font-bold tracking-[0.16em] text-gold uppercase">
-                {c.phoneLabel}
-              </p>
-              <ul className="space-y-1.5">
-                {c.phones.map((p) => (
-                  <li key={p}>
-                    <a
-                      href={`tel:${p.replace(/[^\d+]/g, "")}`}
-                      dir="ltr"
-                      className="text-cream transition-colors hover:text-gold"
-                    >
-                      {p}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
-            <Reveal delay={0.12}>
-              <p className="font-display mb-3 text-[0.68rem] font-bold tracking-[0.16em] text-gold uppercase">
-                {c.hoursLabel}
-              </p>
-              <a
-                href="https://wa.me/2001012177600"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block rounded-sm bg-gold px-6 py-3 font-display text-[0.76rem] font-bold tracking-[0.08em] text-pitch uppercase transition-colors hover:bg-gold-lit"
-              >
-                {locale === "ar" ? "كلمنا على واتساب" : "Message on WhatsApp"}
-              </a>
-              <div className="mt-5 flex gap-3">
-                {c.instagramUrl && (
-                  <a
-                    href={c.instagramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-display text-[0.7rem] font-bold tracking-[0.1em] text-cream-dim uppercase hover:text-gold"
-                  >
-                    Instagram
-                  </a>
-                )}
-                {c.facebookUrl && (
-                  <a
-                    href={c.facebookUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-display text-[0.7rem] font-bold tracking-[0.1em] text-cream-dim uppercase hover:text-gold"
-                  >
-                    Facebook
-                  </a>
-                )}
+            <div className="mt-12 grid gap-8 border-t border-gold/25 pt-10 md:grid-cols-3">
+              <div>
+                <p className="font-display mb-3 text-[0.68rem] font-bold tracking-[0.16em] text-gold uppercase">
+                  {c.addressLabel}
+                </p>
+                <p className="max-w-[30ch] leading-[1.75] text-cream">{c.address}</p>
+                <a
+                  href={c.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block font-display text-[0.72rem] font-bold tracking-[0.1em] text-gold uppercase underline-offset-4 hover:underline"
+                >
+                  {c.cta}
+                </a>
               </div>
-            </Reveal>
-          </div>
+
+              <div>
+                <p className="font-display mb-3 text-[0.68rem] font-bold tracking-[0.16em] text-gold uppercase">
+                  {c.phoneLabel}
+                </p>
+                <ul className="space-y-1.5">
+                  {c.phones.map((p) => (
+                    <li key={p}>
+                      <a
+                        href={`tel:${p.replace(/[^\d+]/g, "")}`}
+                        dir="ltr"
+                        className="text-cream transition-colors hover:text-gold"
+                      >
+                        {p}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <p className="font-display mb-3 text-[0.68rem] font-bold tracking-[0.16em] text-gold uppercase">
+                  {c.hoursLabel}
+                </p>
+                <a
+                  href="https://wa.me/2001012177600"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block rounded-sm bg-gold px-6 py-3 font-display text-[0.76rem] font-bold tracking-[0.08em] text-pitch uppercase transition-colors hover:bg-gold-lit"
+                >
+                  {locale === "ar" ? "كلمنا على واتساب" : "Message on WhatsApp"}
+                </a>
+                <div className="mt-5 flex gap-3">
+                  {c.instagramUrl && (
+                    <a
+                      href={c.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-[0.7rem] font-bold tracking-[0.1em] text-cream-dim uppercase hover:text-gold"
+                    >
+                      Instagram
+                    </a>
+                  )}
+                  {c.facebookUrl && (
+                    <a
+                      href={c.facebookUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-[0.7rem] font-bold tracking-[0.1em] text-cream-dim uppercase hover:text-gold"
+                    >
+                      Facebook
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -139,11 +137,8 @@ export function Visit() {
           </div>
 
           <div className="text-xs text-cream-dim md:text-end">
-            <p>{content.footer.disclaimer}</p>
             <p className="mt-1">
               {content.footer.rights}
-              <span className="mx-2 opacity-40">/</span>
-              {locale === "ar" ? "صُمم بواسطة Claude" : "Designed by Claude"}
             </p>
           </div>
         </div>

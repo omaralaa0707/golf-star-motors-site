@@ -1,36 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
 import { useLocale } from "@/i18n/locale-provider";
-import { SplitText } from "@/components/motion/split-text";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { Reveal } from "@/components/motion/reveal";
 import { MAKES, TEASER_FRAME } from "@/content/media";
 
 export function Hero() {
-  const root = useRef<HTMLElement>(null);
   const { content, locale } = useLocale();
-
-  useGSAP(
-    () => {
-      // Fast, retail-energy entrance — nothing lingers.
-      gsap.from("[data-fact]", {
-        yPercent: 120,
-        opacity: 0,
-        stagger: 0.06,
-        duration: 0.7,
-        ease: "power3.out",
-        delay: 0.45,
-      });
-
-      gsap.to("[data-hero-photo]", {
-        yPercent: 12,
-        ease: "none",
-        scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: 0.5 },
-      });
-    },
-    { scope: root, dependencies: [locale] }
-  );
 
   const facts =
     locale === "ar"
@@ -38,7 +14,7 @@ export function Hero() {
       : ["Authorised distributor", "Up to 8 years", "ID card only", "No credit inquiry"];
 
   return (
-    <section ref={root} id="top" className="relative overflow-hidden pt-26 pb-0 md:pt-32">
+    <section id="top" className="relative overflow-hidden pt-26 pb-0 md:pt-32">
       {/* Gold wash + hairline rules: the collateral's own visual furniture. */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 start-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--color-gold-deep)_0%,transparent_68%)] opacity-45 rtl:translate-x-1/2" />
@@ -52,13 +28,9 @@ export function Hero() {
           <div>
             <p className="font-script mb-3 text-2xl text-gold md:text-3xl">Since 1975</p>
 
-            <SplitText
-              as="h1"
-              text={content.hero.headline}
-              className="font-display text-hero leading-[0.98] font-extrabold uppercase text-cream"
-              lineStagger={0.07}
-              delay={0.1}
-            />
+            <h1 className="font-display text-hero leading-[0.98] font-extrabold uppercase text-cream">
+              {content.hero.headline}
+            </h1>
 
             <p className="mt-6 max-w-[46ch] text-lead leading-[1.75] text-cream-dim">
               {content.hero.sub}
@@ -83,33 +55,31 @@ export function Hero() {
           </div>
 
           <div className="relative aspect-[16/10] overflow-hidden rounded-sm lg:aspect-[5/6]">
-            <div data-hero-photo className="absolute inset-[-8%]">
-              <Image
-                src={TEASER_FRAME}
-                alt=""
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
-              />
-            </div>
+            <Image
+              src={TEASER_FRAME}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-pitch via-transparent to-transparent" />
           </div>
         </div>
 
-        {/* Fact strip — the promises they lead with in every post. */}
-        <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden border-y border-gold/25 bg-gold/20 md:grid-cols-4">
-          {facts.map((f) => (
-            <li key={f} className="overflow-hidden bg-pitch px-4 py-5 text-center md:py-6">
-              <span
-                data-fact
-                className="block font-display text-[0.72rem] font-bold tracking-[0.09em] text-gold uppercase md:text-[0.82rem]"
-              >
-                {f}
-              </span>
-            </li>
-          ))}
-        </ul>
+        {/* Fact strip — the promises they lead with in every post. One reveal
+            for the whole strip, not a per-item stagger. */}
+        <Reveal className="mt-12">
+          <ul className="grid grid-cols-2 gap-px overflow-hidden border-y border-gold/25 bg-gold/20 md:grid-cols-4">
+            {facts.map((f) => (
+              <li key={f} className="bg-pitch px-4 py-5 text-center md:py-6">
+                <span className="block font-display text-[0.72rem] font-bold tracking-[0.09em] text-gold uppercase md:text-[0.82rem]">
+                  {f}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
 
       {/* Make ticker: continuous, mechanical, the opposite of a slow fade. */}

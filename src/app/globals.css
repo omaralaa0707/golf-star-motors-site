@@ -114,3 +114,26 @@ html[dir="rtl"] .text-section {
 html[dir="rtl"] [class*="tracking-["] {
   letter-spacing: 0.02em;
 }
+
+/* ============================ section reveal ==============================
+   One calm reveal, used once per section: opacity 0→1 plus a small rise,
+   never a per-child stagger. [data-reveal] is observed by an
+   IntersectionObserver and gains [data-seen] the moment it is ~10% into the
+   viewport; the observer then disconnects, so it only ever plays once.
+   NEVER animate clip-path here: it collapses the intersection rect and the
+   reveal silently never fires. The layout ships a <noscript><style> that
+   forces this visible when JS never runs.
+   ========================================================================= */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+[data-reveal][data-seen] {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 450ms ease-out,
+    transform 450ms ease-out;
+}
